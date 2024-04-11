@@ -8,5 +8,6 @@ AdoDotNetExamples adoDotNetExamples = new AdoDotNetExamples();
 adoDotNetExamples.Read();
 adoDotNetExamples.Create("title", "author", "content");
 adoDotNetExamples.Update(11, "updated title", "updated author", "updated content");
+adoDotNetExamples.Delete(12);
 
 Console.ReadKey();

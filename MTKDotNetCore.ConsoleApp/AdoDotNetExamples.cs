@@ -107,5 +107,22 @@ namespace MTKDotNetCore.ConsoleApp
             string message = result > 0 ? "Update Successful!" : "Update Failed!";
             Console.WriteLine(message);
         }
+
+        public void Delete(int id)
+        {
+            SqlConnection connection = new SqlConnection(_sqlConnectionStringBuilder.ConnectionString);
+            connection.Open();
+
+            string query = @"DELETE FROM [dbo].[Tbl_Blog]
+      WHERE BlogId = @BlogId";
+
+            SqlCommand cmd = new SqlCommand(query, connection);
+            cmd.Parameters.AddWithValue("@BlogId", id);
+            int result = cmd.ExecuteNonQuery();
+
+            connection.Close();
+
+            string message = result > 0 ? "Delete Successful!" : "Delete Failed!";
+        }
     }
 }
