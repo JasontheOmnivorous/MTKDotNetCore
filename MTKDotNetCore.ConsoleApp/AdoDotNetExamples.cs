@@ -52,6 +52,35 @@ namespace MTKDotNetCore.ConsoleApp
             }
         }
 
+        // Ado.net create
+        public void Create(string title, string author, string content)
+        {
+            SqlConnection connection = new SqlConnection(_sqlConnectionStringBuilder.ConnectionString);
+            connection.Open();
 
+            // @ for multiple line support
+            // we could directly use method params inside the string, but that could raise the risk of SQL injection
+            string query = @"
+            INSERT INTO [dbo].[Tbl_Blog]
+           ([BlogTitle]
+           ,[BlogAuthor]
+           ,[BlogContent])
+     VALUES
+           (@BlogTitle
+           ,@BlogAuthor
+           ,@BlogContent)";
+            SqlCommand cmd = new SqlCommand(query, connection);
+            // replace placeholder parameters with method parameters 
+            cmd.Parameters.AddWithValue("@BlogTitle", title);
+            cmd.Parameters.AddWithValue("@BlogAuthor", author);
+            cmd.Parameters.AddWithValue("@BlogContent", content);
+            int result = cmd.ExecuteNonQuery();
+
+            connection.Close();
+
+            // success indicator
+            string message = result > 0 ? "Saving Success!" : "Saving Failed";
+            Console.WriteLine(message);
+        }
     }
 }
