@@ -10,16 +10,20 @@ namespace MTKDotNetCore.ConsoleApp
 {
     internal class AdoDotNetExamples
     {
+        // explicitly define properties right after creating instance, so that we don't need to add them again and again
+        // use underscore when defining global variables
+        private readonly SqlConnectionStringBuilder _sqlConnectionStringBuilder = new SqlConnectionStringBuilder()
+        {
+            DataSource = "DESKTOP-ROVEV23",
+            InitialCatalog = "MTKDotNetCore",
+            UserID = "sa",
+            Password = "sa@123",
+        };
 
         // Ado.net Read
         public void Read()
         {
-            SqlConnectionStringBuilder stringBuilder = new SqlConnectionStringBuilder();
-            stringBuilder.DataSource = "DESKTOP-ROVEV23";
-            stringBuilder.InitialCatalog = "MTKDotNetCore";
-            stringBuilder.UserID = "sa";
-            stringBuilder.Password = "sa@123";
-            SqlConnection connection = new SqlConnection(stringBuilder.ConnectionString);
+            SqlConnection connection = new SqlConnection(_sqlConnectionStringBuilder.ConnectionString);
 
             connection.Open();
             Console.WriteLine("Connection opened!");
