@@ -7,5 +7,6 @@ Console.WriteLine("Hello, World!");
 AdoDotNetExamples adoDotNetExamples = new AdoDotNetExamples();
 adoDotNetExamples.Read();
 adoDotNetExamples.Create("title", "author", "content");
+adoDotNetExamples.Update(11, "updated title", "updated author", "updated content");
 
 Console.ReadKey();
