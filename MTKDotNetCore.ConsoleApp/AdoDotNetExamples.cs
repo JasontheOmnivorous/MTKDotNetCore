@@ -153,6 +153,7 @@ namespace MTKDotNetCore.ConsoleApp
             connection.Close();
 
             string message = result > 0 ? "Delete Successful!" : "Delete Failed!";
+            Console.WriteLine(message);
         }
     }
 }

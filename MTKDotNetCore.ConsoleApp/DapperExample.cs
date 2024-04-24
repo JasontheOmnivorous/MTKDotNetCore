@@ -38,6 +38,7 @@ namespace MTKDotNetCore.ConsoleApp
         public void Edit(int id)
         {
             using IDbConnection db = new SqlConnection(ConnectionStrings.sqlConnectionStringBuilder.ConnectionString);
+            // FirstOrDefault literally means if we found the stuff we're searching, will return it, if not, will return object's default value which is null 
             var item = db.Query<BlogDto>("select * from tbl_blog where blogid = @BlogId", new BlogDto { BlogId = id }).FirstOrDefault();
 
             if (item is null)
