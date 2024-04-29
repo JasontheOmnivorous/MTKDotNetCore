@@ -1,10 +1,13 @@
 ﻿using MTKDotNetCore.ConsoleApp;
+using MTKDotNetCore.ConsoleApp.AdoDotNetExamples;
+using MTKDotNetCore.ConsoleApp.DapperExamples;
+using MTKDotNetCore.ConsoleApp.EFCoreExamples;
 using System.Data;
 using System.Data.SqlClient;
 
 Console.WriteLine("Hello, World!");
 
-//AdoDotNetExamples adoDotNetExamples = new AdoDotNetExamples();
+//AdoDotNetExample adoDotNetExamples = new AdoDotNetExample();
 //adoDotNetExamples.Read();
 //adoDotNetExamples.Create("title", "author", "content");
 //adoDotNetExamples.Update(11, "updated title", "updated author", "updated content");

@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace MTKDotNetCore.ConsoleApp
+namespace MTKDotNetCore.ConsoleApp.Services
 {
     internal static class ConnectionStrings
     {
@@ -14,7 +14,7 @@ namespace MTKDotNetCore.ConsoleApp
             DataSource = ".",
             InitialCatalog = "MTKDotNetCore",
             UserID = "sa",
-            Password= "sa@123",
+            Password = "sa@123",
             TrustServerCertificate = true
         };
     }

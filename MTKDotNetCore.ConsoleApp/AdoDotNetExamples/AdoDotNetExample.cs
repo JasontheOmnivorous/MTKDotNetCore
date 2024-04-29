@@ -6,9 +6,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace MTKDotNetCore.ConsoleApp
+namespace MTKDotNetCore.ConsoleApp.AdoDotNetExamples
 {
-    internal class AdoDotNetExamples
+    internal class AdoDotNetExample
     {
         // explicitly define properties right after creating instance, so that we don't need to add them again and again
         // use underscore when defining global variables
