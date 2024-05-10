@@ -33,6 +33,12 @@
             return result;
         }
 
+        public int PatchBlog (int id, BlogModel requestModel)
+        {
+            var result = _daBlog.PatchBlog(id, requestModel);
+            return result;
+        }
+
         public int DeleteBlog (int id)
         {
             var result = _daBlog.DeleteBlog(id);
