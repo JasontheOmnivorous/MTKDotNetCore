@@ -46,11 +46,11 @@ namespace MTKDotNetCore.RestApiWithNLayer.Features.Blog
             return message;
         }
 
-        [HttpPatch("{id}")]
-        public string PatchBlog (int id, BlogModel requestModel)
-        {
+        //[HttpPatch("{id}")]
+        //public string PatchBlog (int id, BlogModel requestModel)
+        //{
             
-        }
+        //}
 
         [HttpDelete("{id}")]
         public string DeleteBlog (int id)
