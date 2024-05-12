@@ -19,7 +19,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MTKDotNetCore.RestApiWithNL
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MTKDotNetCore.ConsoleAppHttpClient", "MTKDotNetCore.ConsoleAppHttpClient\MTKDotNetCore.ConsoleAppHttpClient.csproj", "{5745899B-79B9-4987-BA5A-9FCF13CCD540}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MTKDotNetCore.ConsoleAppHttpClientExamples", "MTKDotNetCore.HttpClientExamples\MTKDotNetCore.ConsoleAppHttpClientExamples.csproj", "{54DC3B2B-B853-483C-B964-DB26ECF7CF12}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MTKDotNetCore.ConsoleAppHttpClientExamples", "MTKDotNetCore.HttpClientExamples\MTKDotNetCore.ConsoleAppHttpClientExamples.csproj", "{54DC3B2B-B853-483C-B964-DB26ECF7CF12}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MTKDotNetCore.ConsoleAppRestClientExamples", "MTKDotNetCore.ConsoleAppRestClientExamples\MTKDotNetCore.ConsoleAppRestClientExamples.csproj", "{A5B1D68E-EBEA-47AD-A6C7-29660F511543}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -51,6 +53,10 @@ Global
 		{54DC3B2B-B853-483C-B964-DB26ECF7CF12}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{54DC3B2B-B853-483C-B964-DB26ECF7CF12}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{54DC3B2B-B853-483C-B964-DB26ECF7CF12}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A5B1D68E-EBEA-47AD-A6C7-29660F511543}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A5B1D68E-EBEA-47AD-A6C7-29660F511543}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A5B1D68E-EBEA-47AD-A6C7-29660F511543}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A5B1D68E-EBEA-47AD-A6C7-29660F511543}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
