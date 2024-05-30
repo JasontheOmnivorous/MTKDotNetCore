@@ -1,4 +1,5 @@
 using MTKDotNetCore.Shared;
+using MTKDotNetCore.WinFormsApp.Models;
 using MTKDotNetCore.WinFormsApp.Queries;
 
 namespace MTKDotNetCore.WinFormsApp
@@ -6,6 +7,7 @@ namespace MTKDotNetCore.WinFormsApp
     public partial class FrmBlog : Form
     {
         private readonly DapperService _dapperService;
+        private readonly int _blogId;
 
         public FrmBlog()
         {
@@ -14,6 +16,22 @@ namespace MTKDotNetCore.WinFormsApp
             // we should always add up more code only after InitializeComponent
             // since it controls mostly of the basic form
             _dapperService = new DapperService(ConnectionStrings.sqlConnectionStringBuilder.ConnectionString);
+        }
+
+        public FrmBlog(int blogId)
+        {
+            InitializeComponent();
+            _blogId = blogId;
+            _dapperService = new DapperService(ConnectionStrings.sqlConnectionStringBuilder.ConnectionString);
+
+            var model = _dapperService.QueryFirstOrDefault<BlogModel>(BlogQuery.BlogEdit, new { BlogId = _blogId });
+
+            txtTitle.Text = model.BlogTitle;
+            txtAuthor.Text = model.BlogAuthor;
+            txtContent.Text = model.BlogContent;
+
+            btnSave.Visible = false;
+            btnUpdate.Visible = true;
         }
 
         private void btnSave_Click(object sender, EventArgs e)
@@ -47,13 +65,38 @@ namespace MTKDotNetCore.WinFormsApp
             ClearControl();
         }
 
-        private void ClearControl ()
+        private void ClearControl()
         {
             txtTitle.Clear();
             txtAuthor.Clear();
             txtContent.Clear();
 
             txtTitle.Focus();
+        }
+
+        private void btnUpdate_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                var item = new BlogModel
+                {
+                    BlogId = _blogId,
+                    BlogTitle = txtTitle.Text.Trim(),
+                    BlogAuthor = txtAuthor.Text.Trim(),
+                    BlogContent = txtContent.Text.Trim(),
+                };
+
+                int result = _dapperService.Execute(BlogQuery.BlogUpdate, item);
+
+                string message = result > 0 ? "Update successful!" : "Update failed.";
+
+                MessageBox.Show(message);
+                this.Close();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.ToString());
+            }
         }
     }
 }
