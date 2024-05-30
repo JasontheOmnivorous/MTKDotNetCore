@@ -7,6 +7,7 @@ using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Linq;
+using System.Runtime.Serialization;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -42,6 +43,8 @@ namespace MTKDotNetCore.WinFormsApp
 
             if (rowIndex < 0) return;
 
+            #region If Case
+
             int blogId = Convert.ToInt32(dgvData.Rows[rowIndex].Cells["colId"].Value.ToString());
 
             if (columnIndex == (int) EnumFormControlType.Edit)
@@ -61,6 +64,40 @@ namespace MTKDotNetCore.WinFormsApp
 
                 BlogList();
             }
+
+            #endregion
+
+            #region Switch Case
+
+            int index = e.ColumnIndex;
+
+            EnumFormControlType enumFormControlType = (EnumFormControlType)index;
+
+            switch (enumFormControlType)
+            {
+                case EnumFormControlType.Edit:
+                    FrmBlog frmBlog = new FrmBlog(blogId);
+                    frmBlog.ShowDialog();
+
+                    BlogList();
+                    break;
+                case EnumFormControlType.Delete:
+                    var dialogResult = MessageBox.Show("Are you sure you want to delete this row?". "", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+
+                    if (dialogResult != DialogResult.Yes) break;
+
+                    DeleteBlog(blogId);
+
+                    BlogList();
+                    break;
+                case EnumFormControlType.None:
+                default:
+                    MessageBox.Show("Invalid Case!");
+                    break;
+            }
+
+            #endregion
+
         }
 
         private void DeleteBlog (int id)
