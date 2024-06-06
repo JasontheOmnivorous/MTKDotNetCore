@@ -67,19 +67,28 @@ const updateBlog = (id, title, author, content) => {
 };
 
 const deleteBlog = (id) => {
-  let result = confirm("Are you sure you want to delete this?");
+  Swal.fire({
+    title: "Are you sure?",
+    text: "You won't be able to revert this!",
+    icon: "warning",
+    showCancelButton: true,
+    confirmButtonColor: "purple",
+    cancelButtonColor: "red",
+    confirmButtonText: "Yes, delete it!",
+  }).then((result) => {
+    if (!result.isConfirmed) return;
 
-  if (!result) return;
+    let lst = getBlogs();
 
-  let lst = getBlogs();
+    const removedLst = lst.filter((x) => x.id !== id);
 
-  const removedLst = lst.filter((x) => x.id !== id);
+    const jsonBlog = JSON.stringify(removedLst);
+    localStorage.setItem(tblBlog, jsonBlog);
 
-  const jsonBlog = JSON.stringify(removedLst);
-  localStorage.setItem(tblBlog, jsonBlog);
+    successMessage("Blog deleted successfully!");
 
-  successMessage("Deleting successful!");
-  getBlogTable();
+    getBlogTable();
+  });
 };
 
 const getBlogs = () => {
@@ -114,11 +123,19 @@ $("#btnSave").click(() => {
 });
 
 const successMessage = (message) => {
-  alert(message);
+  Swal.fire({
+    title: "Success!",
+    text: message,
+    icon: "success",
+  });
 };
 
 const errorMessage = (message) => {
-  alert(message);
+  Swal.fire({
+    title: "Error!",
+    text: message,
+    icon: "error",
+  });
 };
 
 const clearControls = () => {
