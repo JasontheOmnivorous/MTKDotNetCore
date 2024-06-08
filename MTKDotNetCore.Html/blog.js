@@ -67,17 +67,7 @@ const updateBlog = (id, title, author, content) => {
 };
 
 const deleteBlog = (id) => {
-  Swal.fire({
-    title: "Are you sure?",
-    text: "You won't be able to revert this!",
-    icon: "warning",
-    showCancelButton: true,
-    confirmButtonColor: "purple",
-    cancelButtonColor: "red",
-    confirmButtonText: "Yes, delete it!",
-  }).then((result) => {
-    if (!result.isConfirmed) return;
-
+  confirmMessage("Are you sure you want to delete?").then((val) => {
     let lst = getBlogs();
 
     const removedLst = lst.filter((x) => x.id !== id);
@@ -121,22 +111,6 @@ $("#btnSave").click(() => {
 
   getBlogTable();
 });
-
-const successMessage = (message) => {
-  Swal.fire({
-    title: "Success!",
-    text: message,
-    icon: "success",
-  });
-};
-
-const errorMessage = (message) => {
-  Swal.fire({
-    title: "Error!",
-    text: message,
-    icon: "error",
-  });
-};
 
 const clearControls = () => {
   $("#txtTitle").val("");
