@@ -58,3 +58,21 @@ const confirmMessage = (message) => {
 
   return confirmMessageResult;
 };
+
+const getProduct = () => {
+  const products = localStorage.getItem(tblProducts);
+  let lst = [];
+
+  if (products !== null) lst = JSON.parse(products);
+
+  return lst;
+};
+
+const getCart = () => {
+  const carts = localStorage.getItem(tblCart);
+  let lst = [];
+
+  if (carts !== null) lst = JSON.parse(carts);
+
+  return lst;
+};
