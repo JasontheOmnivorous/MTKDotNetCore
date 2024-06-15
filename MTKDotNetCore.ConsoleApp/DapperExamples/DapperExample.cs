@@ -11,8 +11,15 @@ using System.Threading.Tasks;
 
 namespace MTKDotNetCore.ConsoleApp.DapperExamples
 {
-    internal class DapperExample
+    public class DapperExample
     {
+        private readonly SqlConnectionStringBuilder _sqlConnectionStringBuilder;
+
+        public DapperExample(SqlConnectionStringBuilder sqlConnectionStringBuilder)
+        {
+            _sqlConnectionStringBuilder = sqlConnectionStringBuilder;
+        }
+
         public void Run()
         {
             Read();
@@ -24,7 +31,7 @@ namespace MTKDotNetCore.ConsoleApp.DapperExamples
 
         public void Read()
         {
-            using IDbConnection db = new SqlConnection(ConnectionStrings.sqlConnectionStringBuilder.ConnectionString);
+            using IDbConnection db = new SqlConnection(_sqlConnectionStringBuilder.ConnectionString);
             List<BlogDto> lst = db.Query<BlogDto>("select * from tbl_blog").ToList();
 
             foreach (BlogDto item in lst)
@@ -39,7 +46,7 @@ namespace MTKDotNetCore.ConsoleApp.DapperExamples
 
         public void Edit(int id)
         {
-            using IDbConnection db = new SqlConnection(ConnectionStrings.sqlConnectionStringBuilder.ConnectionString);
+            using IDbConnection db = new SqlConnection(_sqlConnectionStringBuilder.ConnectionString);
             // FirstOrDefault literally means if we found the stuff we're searching, will return it, if not, will return object's default value which is null 
             var item = db.Query<BlogDto>("select * from tbl_blog where blogid = @BlogId", new BlogDto { BlogId = id }).FirstOrDefault();
 
@@ -74,7 +81,7 @@ namespace MTKDotNetCore.ConsoleApp.DapperExamples
            ,@BlogAuthor
            ,@BlogContent)";
 
-            using IDbConnection db = new SqlConnection(ConnectionStrings.sqlConnectionStringBuilder.ConnectionString);
+            using IDbConnection db = new SqlConnection(_sqlConnectionStringBuilder.ConnectionString);
             int result = db.Execute(query, item);
 
             string message = result > 0 ? "Saving successful!" : "Saving failed.";
@@ -97,7 +104,7 @@ namespace MTKDotNetCore.ConsoleApp.DapperExamples
       ,[BlogContent] = @BlogContent
  WHERE BlogId = @BlogId";
 
-            using IDbConnection db = new SqlConnection(ConnectionStrings.sqlConnectionStringBuilder.ConnectionString);
+            using IDbConnection db = new SqlConnection(_sqlConnectionStringBuilder.ConnectionString);
             int result = db.Execute(query, item);
 
             string message = result > 0 ? "Update successful!" : "Update failed.";
@@ -114,7 +121,7 @@ namespace MTKDotNetCore.ConsoleApp.DapperExamples
             string query = @"DELETE FROM [dbo].[Tbl_Blog]
       WHERE BlogId = @BlogId";
 
-            using IDbConnection db = new SqlConnection(ConnectionStrings.sqlConnectionStringBuilder.ConnectionString);
+            using IDbConnection db = new SqlConnection(_sqlConnectionStringBuilder.ConnectionString);
             int result = db.Execute(query, item);
 
             string message = result > 0 ? "Delete successful!" : "Delete failed";

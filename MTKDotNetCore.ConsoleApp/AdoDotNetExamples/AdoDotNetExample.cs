@@ -8,17 +8,24 @@ using System.Threading.Tasks;
 
 namespace MTKDotNetCore.ConsoleApp.AdoDotNetExamples
 {
-    internal class AdoDotNetExample
+    public class AdoDotNetExample
     {
         // explicitly define properties right after creating instance, so that we don't need to add them again and again
         // use underscore when defining global variables
-        private readonly SqlConnectionStringBuilder _sqlConnectionStringBuilder = new SqlConnectionStringBuilder()
+        //private readonly SqlConnectionStringBuilder _sqlConnectionStringBuilder = new SqlConnectionStringBuilder()
+        //{
+        //    DataSource = "DESKTOP-ROVEV23",
+        //    InitialCatalog = "MTKDotNetCore",
+        //    UserID = "sa",
+        //    Password = "sa@123",
+        //};
+
+        private readonly SqlConnectionStringBuilder _sqlConnectionStringBuilder;
+
+        public AdoDotNetExample(SqlConnectionStringBuilder sqlConnectionStringBuilder)
         {
-            DataSource = "DESKTOP-ROVEV23",
-            InitialCatalog = "MTKDotNetCore",
-            UserID = "sa",
-            Password = "sa@123",
-        };
+            _sqlConnectionStringBuilder = sqlConnectionStringBuilder;
+        }
 
         // Ado.net Read
         public void Read()

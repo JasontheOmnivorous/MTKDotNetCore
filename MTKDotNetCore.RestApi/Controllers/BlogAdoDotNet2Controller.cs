@@ -12,7 +12,15 @@ namespace MTKDotNetCore.RestApi.Controllers
     [ApiController]
     public class BlogAdoDotNet2Controller : ControllerBase
     {
-        private readonly AdoDotNetService _adoDotNetService = new AdoDotNetService(ConnectionStrings.sqlConnectionStringBuilder.ConnectionString);
+        //private readonly AdoDotNetService _adoDotNetService = new AdoDotNetService(ConnectionStrings.sqlConnectionStringBuilder.ConnectionString);
+
+        private readonly AdoDotNetService _adoDotNetService;
+
+        // parameter adoDotNetService's value will be automatically injected by dependency injection we configured in program.cs
+        public BlogAdoDotNet2Controller(AdoDotNetService adoDotNetService)
+        {
+            _adoDotNetService = adoDotNetService;
+        }
 
         [HttpGet]
         public IActionResult GetBlogs ()
